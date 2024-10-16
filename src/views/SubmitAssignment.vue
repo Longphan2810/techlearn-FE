@@ -5,8 +5,6 @@
       <div class="assignment-description">
         <div ref="description" class="description-text" v-html="format(assignmentDescription.content)"></div>
       </div>
-      <!-- :src="renderVideo(dataLesson.videoUrl)" -->
-      <iframe v-if="assignmentDescription?.type === 'LECTURES'" width="100%" height="500" :src="renderVideo(assignmentDescription.videoUrl)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
     <div v-else>
       <p>Đang tải dữ liệu...</p>
@@ -120,21 +118,11 @@ const assignmentId = route.params.id;
 const isPassed = ref(false);
 const active = ref(false);
 const studentCourse = reactive({});
-const linkYoutubeEmbed = "https://www.youtube.com/embed/";
-
 const errorCode = {
   1301: "Link github được để trống",
   1302: "Link github không được tìm thấy hoặc không đúng định dạng",
   1303: "Lỗi khi gọi API Github",
   1901: "Vượt quá số lượng file cho phép đọc",
-}
-
-function renderVideo(UrlYoutube) {
-  let idVideoYoutube = UrlYoutube.substring(
-    UrlYoutube.indexOf("=") + 1,
-    UrlYoutube.length
-  );
-  return linkYoutubeEmbed + idVideoYoutube;
 }
 
 function validInputLink() {
